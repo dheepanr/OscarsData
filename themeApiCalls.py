@@ -36,8 +36,9 @@ def themeApiCalls(url, authDexter, headers,filtername):
 	
 	apicall = rq.post(url,auth=authDexter,headers=headers,data=json.dumps(payload))
 	print apicall.status_code
-	dataframe = pd.read_json(json.dumps(apicall.json()['data'])).set_index('name')
-	dataframe['movietitle'] = filtername
+	dataframe = pd.read_json(json.dumps(apicall.json()['data']))
+	dataframe['movietitle'] = filtername.replace('MOVIETITLES:','')
+	dataframe = dataframe.set_index(['movietitle','name'])
 	return dataframe
 	
 def main():
