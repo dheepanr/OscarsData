@@ -24,7 +24,7 @@ var chart = c3.generate({
 
         
         },
-        // iris data from R
+       
         columns: [
             ["Action", 70.14],
             ["Mystery",81.78],
