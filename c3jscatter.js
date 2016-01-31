@@ -1,34 +1,4 @@
-var volumes =  [
-  6.67,
-  8.57,
-  4.76,
-  4.76,
-  2.86,
-  3.81,
-  1.9,
-  1.9,
-  1.9,
-  25.71,
-  91.43,
-  17.14,
-  19.05,
-  14.29,
-  15.24,
-  11.43,
-  13.33,
-  9.52,
-  10.48];
-
-var rs = d3.scale.linear()
-          .domain([d3.min(volumes),d3.max(volumes)])
-          .range([2, 20]);
-
 var chart = c3.generate({
-    point: {
-    r: function(volumes) {
-        return rs(volumes.value)
-    }
-},
     data: {
         xs: {
             Action: 'Action_x',
@@ -109,10 +79,11 @@ var chart = c3.generate({
     },
     tooltip: {
         format: {
-            title: function (d) { return 'Genre'; }
+            title: function (d) { return 'Genre Critic Score'; }
             
             }
-        }
+        },
+    point :{r:15}
 });
 
 

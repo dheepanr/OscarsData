@@ -10,13 +10,13 @@ import requests as rq
 import json
 
 movienames = pd.read_excel('movienames.xlsx')
-movienames = movienames[0].tolist()
+movienames = movienames[[0,1]].values.tolist()
 headers = {'content-type': 'application/json'}
 url = 'https://dexter.clarabridge.net/cbrestfulapi/v1/report'
 frames= []
 
 def themeApiCalls(url, authDexter, headers,filtername):
-	payload = {'additionalFilters': [filtername],
+	payload = {'additionalFilters': [filtername[0]],
 	 'additionalMetrics': [],
 	 'attribute': 1,
 	 'count': '50',
@@ -37,7 +37,8 @@ def themeApiCalls(url, authDexter, headers,filtername):
 	apicall = rq.post(url,auth=authDexter,headers=headers,data=json.dumps(payload))
 	print apicall.status_code
 	dataframe = pd.read_json(json.dumps(apicall.json()['data']))
-	dataframe['movietitle'] = filtername.replace('MOVIETITLES:','')
+	dataframe['movietitle'] = filtername[1]
+	dataframe = dataframe[['percentOfVolume','sentiment','sent_count','movietitle','name']]
 	dataframe = dataframe.set_index(['movietitle','name'])
 	return dataframe
 	
@@ -57,7 +58,7 @@ def main():
 	
 		
 if __name__ == '__main__':
-	main()
+	data = main()
 	
 	
 	
