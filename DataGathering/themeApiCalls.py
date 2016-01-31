@@ -9,7 +9,7 @@ import pandas as pd
 import requests as rq
 import json
 
-movienames = pd.read_excel('movienames.xlsx')
+movienames = pd.read_excel('DataFiles/movienames.xlsx')
 movienames = movienames[[0,1]].values.tolist()
 headers = {'content-type': 'application/json'}
 url = 'https://dexter.clarabridge.net/cbrestfulapi/v1/report'

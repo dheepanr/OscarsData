@@ -10,7 +10,7 @@ from sklearn import svm
 from sklearn.feature_selection import SelectKBest
 from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import f_regression
-from themes_df import oscar_features, labels
+from DataGathering/themes_df import oscar_features, labels
 from sklearn.cross_validation import cross_val_score
 
 X = oscar_features
