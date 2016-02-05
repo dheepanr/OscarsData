@@ -10,8 +10,10 @@ from sklearn import svm
 from sklearn.feature_selection import SelectKBest
 from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import f_regression
-from DataGathering/themes_df import oscar_features, labels
+from themes_df import oscar_features, labels
 from sklearn.cross_validation import cross_val_score
+
+
 
 X = oscar_features
 y = labels 
@@ -23,4 +25,5 @@ anova_svm.set_params(anova__k=10, svc__C=1).fit(X, y)
 prediction = anova_svm.predict(X)
 anova_svm.score(X, y)
 
-scores = cross_val_score(clf, X, y, cv=5)    
+scores = cross_val_score(clf, X, y, scoring='accuracy',cv=5)
+print scores   
