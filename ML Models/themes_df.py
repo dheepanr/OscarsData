@@ -9,7 +9,7 @@ Created on Fri Jan 29 15:19:30 2016
 import pickle
 import pandas as pd
 
-themes_df = pickle.load(open('/Users/dheepan.ramanan/Documents/OscarsData/DataFiles/pickle4.p','rb'))
+themes_df = pickle.load(open('/Users/dheepan.ramanan/Documents/OscarsData/DataFiles/oscarshist.p','rb'))
 
 def rerrange(themes_df):
 	newdict={}
