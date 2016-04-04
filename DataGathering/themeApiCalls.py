@@ -15,8 +15,8 @@ headers = {'content-type': 'application/json'}
 url = 'https://dexter.clarabridge.net/cbrestfulapi/v1/report'
 frames= []
 
-def themeApiCalls(url, authDexter, headers,filtername):
-	payload = {'additionalFilters': [filtername[0]],
+def themeApiCalls(url, authDexter, headers,filters):
+	payload = {'additionalFilters': [filters['filters']],
 	 'additionalMetrics': [],
 	 'attribute': 1,
 	 'count': '50',
@@ -37,9 +37,9 @@ def themeApiCalls(url, authDexter, headers,filtername):
 	apicall = rq.post(url,auth=authDexter,headers=headers,data=json.dumps(payload))
 	print apicall.status_code
 	dataframe = pd.read_json(json.dumps(apicall.json()['data']))
-	dataframe['movietitle'] = filtername[1]
-	dataframe = dataframe[['percentOfVolume','sentiment','sent_count','movietitle','name']]
-	dataframe = dataframe.set_index(['movietitle','name'])
+	dataframe['brand'] = filters['brand']
+	dataframe = dataframe[['percentOfVolume','sentiment','sent_count','brand','name']]
+	dataframe = dataframe.set_index(['name'])
 	return dataframe
 	
 def main():
